@@ -10,6 +10,11 @@ DATA_DIR = ROOT_DIR.joinpath("Data")
 RESOURCES_DIR = ROOT_DIR.joinpath("Resources")
 DATE_FORMAT = "%d.%m.%Y."
 
+USERS_PATH = DATA_DIR.joinpath("users.json")
+PROPERTIES_PATH = DATA_DIR.joinpath("properties.json")
+VISITS_PATH = DATA_DIR.joinpath("visits.json")
+AGENCIES_PATH = DATA_DIR.joinpath("agencies.json")
+
 if __name__ == "__main__":
     print()
     print(APPLICATION_DIR)

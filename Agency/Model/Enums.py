@@ -7,6 +7,21 @@ class UserType(Enum):
     OWNER = 2
     ADMIN = 3
 
+class RealEstateType(Enum):
+    HOUSE = "House"
+    APARTMENT = "Apartment"
+    OFFICE = "Office"
+
+class VisitStatus(Enum):
+    PENDING = "Pending"
+    ACCEPTED = "Accepted"
+    REJECTED = "Rejected"
+
+class RealEstateStatus(Enum):
+    ACTIVE = "Active"
+    SOLD = "Sold"
+    INACTIVE = "Inactive"
+
 class SearchData(Enum):
     ALL = (0, "SVE")
     LOCATION = (1, "LOKACIJA")
