@@ -68,3 +68,7 @@ class User(ABC):
             "user_type": self._user_type.value
         }
         return user_dict
+
+    @pk.setter
+    def pk(self, value):
+        self._pk = value
