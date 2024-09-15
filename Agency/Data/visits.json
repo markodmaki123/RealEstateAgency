@@ -1,0 +1,16 @@
+{
+    "0": {
+        "pk": 0,
+        "user": 0,
+        "real_estate": 0,
+        "visit_time": "14.09.2024.",
+        "status": 0
+    },
+    "1": {
+        "pk": 1,
+        "user": 0,
+        "real_estate": 1,
+        "visit_time": "15.09.2024.",
+        "status": 1
+    }
+}

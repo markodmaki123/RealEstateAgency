@@ -1,0 +1,26 @@
+{
+    "0": {
+        "pk": 0,
+        "location": "Ulica 123, Grad A",
+        "price": 150000,
+        "type": 0,
+        "status": 0,
+        "agent": 1
+    },
+    "1": {
+        "pk": 1,
+        "location": "Ulica 456, Grad B",
+        "price": 200000,
+        "type": 1,
+        "status": 1,
+        "agent": 1
+    },
+    "2": {
+        "pk": 2,
+        "location": "Ulica 789, Grad C",
+        "price": 300000,
+        "type": 0,
+        "status": 0,
+        "agent": 1
+    }
+}

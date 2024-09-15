@@ -1,0 +1,18 @@
+{
+    "0": {
+        "pk": 3,
+        "name": "Marija",
+        "surname": "Petrovic",
+        "password": "ownerpass",
+        "address": {
+            "pk": 3,
+            "place": "Ni\u00c5\u00a1",
+            "street": "Freedom Square",
+            "number": "10"
+        },
+        "agents": [1],
+        "email": "marija.petrovic@agencyowner.com",
+        "user_type": 2,
+        "phone_number": "0655555555"
+    }
+}

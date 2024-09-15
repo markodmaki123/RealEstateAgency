@@ -8,19 +8,24 @@ class UserType(Enum):
     ADMIN = 3
 
 class RealEstateType(Enum):
-    HOUSE = "House"
-    APARTMENT = "Apartment"
-    OFFICE = "Office"
+    HOUSE = 0
+    APARTMENT = 1
+    OFFICE = 2
+
+
 
 class VisitStatus(Enum):
-    PENDING = "Pending"
-    ACCEPTED = "Accepted"
-    REJECTED = "Rejected"
+    PENDING = 0
+    ACCEPTED = 1
+    REJECTED = 2
+
+
 
 class RealEstateStatus(Enum):
-    ACTIVE = "Active"
-    SOLD = "Sold"
-    INACTIVE = "Inactive"
+    ACTIVE = 0
+    SOLD = 1
+    INACTIVE = 2
+
 
 class SearchData(Enum):
     ALL = (0, "SVE")

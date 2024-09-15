@@ -9,7 +9,7 @@ class User(ABC):
         self._password = info_dict["password"]
         self._name = info_dict["name"]
         self._surname = info_dict["surname"]
-        self._address = [info_dict["address"], None]
+        self._address = info_dict["address"]
         self._email = info_dict["email"]
         self._user_type = UserType(info_dict["user_type"])
         self._phone_number = info_dict["phone_number"]
@@ -63,9 +63,10 @@ class User(ABC):
             "password": self._password,
             "name": self._name,
             "surname": self._surname,
-            "address": self._address[1].pk,
+            "address": self._address.to_dict() if self._address else None,
             "email": self._email,
-            "user_type": self._user_type.value
+            "user_type": self._user_type.value,
+            "phone_number": self._phone_number
         }
         return user_dict
 

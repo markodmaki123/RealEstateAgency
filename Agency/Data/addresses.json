@@ -1,0 +1,32 @@
+{
+    "0": {
+        "pk": 0,
+        "place": "Grad A",
+        "street": "Glavna Ulica",
+        "number": "123"
+    },
+    "1": {
+        "pk": 1,
+        "place": "Grad B",
+        "street": "Bulevar Vojvode",
+        "number": "456"
+    },
+    "2": {
+        "pk": 2,
+        "place": "Grad C",
+        "street": "Osma Ulica",
+        "number": "789"
+    },
+    "3": {
+        "pk": 3,
+        "place": "Grad D",
+        "street": "Peti Bulevar",
+        "number": "321"
+    },
+    "4": {
+        "pk": 4,
+        "place": "Grad E",
+        "street": "Ulica Vojvode",
+        "number": "654"
+    }
+}

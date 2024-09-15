@@ -1,0 +1,62 @@
+{
+    "1": {
+        "pk": 1,
+        "password": "password123",
+        "name": "Milos",
+        "surname": "Nikolic",
+        "address": {
+            "pk": 1,
+            "place": "Belgrade",
+            "street": "Main St",
+            "number": "15"
+        },
+        "email": "milos.nikolic@gmail.com",
+        "user_type": 0,
+        "phone_number": "0601234567"
+    },
+    "2": {
+        "pk": 2,
+        "password": "agentpassword",
+        "name": "Ivan",
+        "surname": "Savic",
+        "address": {
+            "pk": 2,
+            "place": "Novi Sad",
+            "street": "King Peter I St",
+            "number": "22"
+        },
+        "email": "ivan.savic@agency.com",
+        "user_type": 1,
+        "phone_number": "0619876543"
+    },
+    "3": {
+        "pk": 3,
+        "password": "ownerpass",
+        "name": "Marija",
+        "surname": "Petrovic",
+        "address": {
+            "pk": 3,
+            "place": "Ni\u00c5\u00a1",
+            "street": "Freedom Square",
+            "number": "10"
+        },
+        "email": "marija.petrovic@agencyowner.com",
+        "user_type": 2,
+        "phone_number": "0655555555"
+    },
+    "4": {
+        "pk": 4,
+        "password": "admin123",
+        "name": "Nikola",
+        "surname": "Jovanovic",
+        "address": {
+            "pk": 4,
+            "place": "Kragujevac",
+            "street": "Center St",
+            "number": "30"
+        },
+        "email": "nikola.jovanovic@admin.com",
+        "user_type": 3,
+        "phone_number": "0641112222"
+    }
+}

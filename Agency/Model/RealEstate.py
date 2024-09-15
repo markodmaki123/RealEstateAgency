@@ -4,7 +4,7 @@ from RealEstateAgency.Agency.Model.Enums import RealEstateType
 
 class RealEstate:
     def __init__(self, info_dict):
-        self._pk = info_dict["id"]
+        self._pk = info_dict["pk"]
         self._location = info_dict["location"]
         self._price = info_dict["price"]
         self._type = RealEstateType(info_dict["type"])

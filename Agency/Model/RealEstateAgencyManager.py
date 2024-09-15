@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from RealEstateAgency.Agency.Application.config import USERS_PATH, PROPERTIES_PATH, VISITS_PATH, AGENCIES_PATH, DATE_FORMAT
+from RealEstateAgency.Agency.Application.config import USERS_PATH, REAL_ESTATES_PATH, VISITS_PATH, AGENCIES_PATH, DATE_FORMAT, ADDRESSES_PATH
 from RealEstateAgency.Agency.Model.User import User
 from RealEstateAgency.Agency.Model.Agent import Agent
 from RealEstateAgency.Agency.Model.AgencyOwner import AgencyOwner
@@ -8,6 +8,7 @@ from RealEstateAgency.Agency.Model.RealEstate import RealEstate
 from RealEstateAgency.Agency.Model.Visit import Visit
 from RealEstateAgency.Agency.Model.Administrator import Administrator
 from RealEstateAgency.Agency.Model.Enums import UserType, VisitStatus, RealEstateStatus, Rate
+from RealEstateAgency.Agency.Model.Address import Address
 
 
 class RealEstateAgencyManager:
@@ -23,6 +24,8 @@ class RealEstateAgencyManager:
     def _create_user(self, user_dict, owner_id=None):
         user_type = UserType(user_dict["user_type"])
         pk = max(self._users.keys(), default=0) + 1
+        address_dict = user_dict["address"]
+        user_dict["address"] = Address(address_dict)
 
         if user_type == UserType.AGENT:
             user = Agent(user_dict)
@@ -64,7 +67,7 @@ class RealEstateAgencyManager:
 
     def _load_database(self):
         self._load_users()
-        self._real_estates = self._load_data(PROPERTIES_PATH, RealEstate)
+        self._real_estates = self._load_data(REAL_ESTATES_PATH, RealEstate)
         self._visits = self._load_data(VISITS_PATH, Visit)
         self._agencies = self._load_data(AGENCIES_PATH, AgencyOwner)
 
@@ -76,8 +79,8 @@ class RealEstateAgencyManager:
 
     def _load_visit_associations(self):
         for visit in self._visits.values():
-            visit.user = self._users.get(visit.user.pk)
-            visit.real_estate = self._real_estates.get(visit.real_estate.pk)
+            visit._user = self._users.get(visit._user)
+            visit._real_estate = self._real_estates.get(visit._real_estate)
 
     def _load_associations(self):
         self._load_user_associations()
@@ -176,7 +179,7 @@ class RealEstateAgencyManager:
         return json_real_estates
 
     def _save_real_estates(self):
-        with open(PROPERTIES_PATH, "w") as properties_file:
+        with open(REAL_ESTATES_PATH, "w") as properties_file:
             json.dump(self._real_estates_to_json(), properties_file, indent=4)
 
     def _visits_to_json(self):
@@ -188,3 +191,8 @@ class RealEstateAgencyManager:
     def _save_visits(self):
         with open(VISITS_PATH, "w") as visits_file:
             json.dump(self._visits_to_json(), visits_file, indent=4)
+
+    def _load_address(self, address_pk):
+        with open(ADDRESSES_PATH, 'r') as address_file:
+            address_data = json.load(address_file)
+        return address_data.get(str(address_pk), None)
