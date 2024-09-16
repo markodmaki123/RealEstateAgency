@@ -1,12 +1,12 @@
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.uic import loadUi
 
 from RealEstateAgency.Agency.Model.Enums import UserType
+from RealEstateAgency.Agency.View.MessageBox import messageBox
 from RealEstateAgency.Agency.View.AgentMainView import AgentMainView
 from RealEstateAgency.Agency.View.OwnerMainView import OwnerMainView
 from RealEstateAgency.Agency.View.AdminMainView import AdminMainView
 from RealEstateAgency.Agency.View.RegisterView import RegisterView
-from RealEstateAgency.Agency.View.MessageBox import messageBox
 from RealEstateAgency.Agency.Application.config import LOGIN_UI_PATH
 
 class LoginView(QtWidgets.QMainWindow):
@@ -20,15 +20,12 @@ class LoginView(QtWidgets.QMainWindow):
         loadUi(LOGIN_UI_PATH, self)
         self.setWindowTitle("Login")
 
-        self.password_field.setEchoMode(QtWidgets.QLineEdit.Password)
-
         self.login_button.clicked.connect(self.login_btn_pressed)
         self.register_button.clicked.connect(self.switch_to_register)
 
     def login_btn_pressed(self):
         email = self.email_field.text()
         password = self.password_field.text()
-
         self._user = self._controller.login_user(email, password)
 
         if self._user:
