@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdminMainView</class>
+ <widget class="QMainWindow" name="AdminMainView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Admin Dashboard</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="add_owner_button">
+      <property name="text">
+       <string>Add Agency Owner</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="deactivate_account_button">
+      <property name="text">
+       <string>Deactivate User Accounts</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="hide_property_button">
+      <property name="text">
+       <string>Hide Properties</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="view_reports_button">
+      <property name="text">
+       <string>View Monthly Reports</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

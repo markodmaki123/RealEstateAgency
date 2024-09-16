@@ -16,6 +16,12 @@ VISITS_PATH = DATA_DIR.joinpath("visits.json")
 AGENCIES_PATH = DATA_DIR.joinpath("agencies.json")
 ADDRESSES_PATH = DATA_DIR.joinpath("addresses.json")
 
+LOGIN_UI_PATH = VIEW_DIR.joinpath("loginView.ui")
+REGISTER_UI_PATH = VIEW_DIR.joinpath("registerView.ui")
+ADMIN_UI_PATH = VIEW_DIR.joinpath("adminView.ui")
+OWNER_UI_PATH = VIEW_DIR.joinpath("ownerView.ui")
+AGENT_UI_PATH = VIEW_DIR.joinpath("agentView.ui")
+
 if __name__ == "__main__":
     print()
     print(APPLICATION_DIR)

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OwnerMainView</class>
+ <widget class="QMainWindow" name="OwnerMainView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Owner Dashboard</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="dashboard_label">
+      <property name="text">
+       <string>Owner Dashboard</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="add_agent_button">
+      <property name="text">
+       <string>Add Agent</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="view_properties_button">
+      <property name="text">
+       <string>View Properties</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="view_popular_agents_button">
+      <property name="text">
+       <string>View Popular Agents</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="view_popular_properties_button">
+      <property name="text">
+       <string>View Popular Properties</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
