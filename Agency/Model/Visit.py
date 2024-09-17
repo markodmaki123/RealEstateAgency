@@ -1,10 +1,11 @@
-from RealEstateAgency.Agency.Application.config import DATE_FORMAT
+#from RealEstateAgency.Agency.Application.config import DATE_FORMAT
 from datetime import datetime
 from RealEstateAgency.Agency.Model.Enums import VisitStatus
 
 
 class Visit:
     def __init__(self, info_dict):
+        DATE_FORMAT = "%d.%m.%Y."
         self._pk = info_dict["pk"]
         self._user = info_dict["user"]
         self._real_estate = info_dict["real_estate"]

@@ -30,6 +30,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="add_properties_button">
+      <property name="text">
+       <string>Add Properties</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="view_calendar_button">
       <property name="text">
        <string>View Calendar</string>

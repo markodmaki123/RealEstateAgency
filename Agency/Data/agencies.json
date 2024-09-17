@@ -4,12 +4,7 @@
         "name": "Marija",
         "surname": "Petrovic",
         "password": "ownerpass",
-        "address": {
-            "pk": 3,
-            "place": "Ni\u00c5\u00a1",
-            "street": "Freedom Square",
-            "number": "10"
-        },
+        "address": "Belgrade Main St 15",
         "agents": [1],
         "email": "marija.petrovic@agencyowner.com",
         "user_type": 2,

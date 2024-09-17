@@ -10,6 +10,7 @@ class RealEstate:
         self._type = RealEstateType(info_dict["type"])
         self._status = RealEstateStatus(info_dict["status"])
         self._agent = info_dict["agent"]
+        self._images = info_dict.get("images", [])
 
 
     @property
@@ -35,3 +36,6 @@ class RealEstate:
     @property
     def agent(self):
         return self._agent
+
+    def add_image(self, image):
+        self._images.append(image)

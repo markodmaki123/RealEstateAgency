@@ -1,6 +1,6 @@
 import json
-from datetime import datetime
-from RealEstateAgency.Agency.Application.config import USERS_PATH, REAL_ESTATES_PATH, VISITS_PATH, AGENCIES_PATH, DATE_FORMAT, ADDRESSES_PATH
+from pathlib import Path
+from RealEstateAgency.Agency.Application.config import USERS_PATH, REAL_ESTATES_PATH, VISITS_PATH, AGENCIES_PATH, DATE_FORMAT
 from RealEstateAgency.Agency.Model.User import User
 from RealEstateAgency.Agency.Model.Agent import Agent
 from RealEstateAgency.Agency.Model.AgencyOwner import AgencyOwner
@@ -8,7 +8,6 @@ from RealEstateAgency.Agency.Model.RealEstate import RealEstate
 from RealEstateAgency.Agency.Model.Visit import Visit
 from RealEstateAgency.Agency.Model.Administrator import Administrator
 from RealEstateAgency.Agency.Model.Enums import UserType, VisitStatus, RealEstateStatus, Rate
-from RealEstateAgency.Agency.Model.Address import Address
 
 
 class RealEstateAgencyManager:
@@ -21,33 +20,42 @@ class RealEstateAgencyManager:
         self._load_database()
         self._load_associations()
 
-    def _create_user(self, user_dict, owner_id=None):
-        user_type = UserType(user_dict["user_type"])
+    def _create_user(self, user_dict, owner_pk=None):
+        try:
+            user_type = UserType(user_dict["user_type"])
+            print(f"Creating user of type: {user_type}")
+        except KeyError as e:
+            print(f"KeyError: {e} - Check if user_type is present in user_dict")
+            raise
         pk = max(self._users.keys(), default=0) + 1
-        address_dict = user_dict["address"]
-        user_dict["address"] = Address(address_dict)
+        print(f"New user PK: {pk}")
 
-        if user_type == UserType.AGENT:
-            user = Agent(user_dict)
-            user.pk = pk
-            if owner_id:
-                owner = self.get_user_by_id(owner_id)
-                owner.agents[user.pk] = user
-        elif user_type == UserType.OWNER:
-            user = AgencyOwner(user_dict)
-            user.pk = pk
-        elif user_type == UserType.ADMIN:
-            user = Administrator(user_dict)
-            user.pk = pk
-        else:
-            user = User(user_dict)
-            user.pk = pk
+        try:
+            if user_type == UserType.AGENT:
+                user = Agent(user_dict)
+                user.pk = pk
+                if owner_pk:
+                    owner = self.get_user_by_pk(owner_pk)
+                    owner.agents[user.pk] = user
+            elif user_type == UserType.OWNER:
+                user = AgencyOwner(user_dict)
+                user.pk = pk
+            elif user_type == UserType.ADMIN:
+                user = Administrator(user_dict)
+                user.pk = pk
+            else:
+                user = User(user_dict)
+                user.pk = pk
 
-        self._users[pk] = user
-        email = user_dict["email"]
-        self._users_by_email[email] = user
-        self._save_users()
-        return user
+            self._users[pk] = user
+            email = user_dict["email"]
+            self._users_by_email[email] = user
+            self._save_users()
+            print(f"User added to users dictionary: {self._users}")
+            return user
+        except Exception as e:
+            print(f"Error creating user: {e}")
+            raise
 
     def _load_users(self):
         with open(USERS_PATH, "r") as users_file:
@@ -102,8 +110,8 @@ class RealEstateAgencyManager:
             if real_estate.matches_search(search_params)
         ]
 
-    def get_user_by_id(self, user_id):
-        return self._users.get(user_id)
+    def get_user_by_pk(self, user_pk):
+        return self._users.get(user_pk)
 
     def get_real_estate_by_id(self, real_estate_id):
         return self._real_estates.get(real_estate_id)
@@ -119,13 +127,20 @@ class RealEstateAgencyManager:
         real_estate.add_rating(user_id, rating)
         self._save_real_estates()
 
-    def add_real_estate(self, agent_id, new_real_estate):
+    def add_real_estate(self, agent_pk, new_real_estate):
         pk = max(self._real_estates.keys(), default=0) + 1
         new_real_estate.pk = pk
-        agent = self.get_user_by_id(agent_id)
+        agent = self.get_user_by_pk(agent_pk)
         agent.properties[pk] = new_real_estate
         self._real_estates[pk] = new_real_estate
         self._save_real_estates()
+
+    def view_real_estates(self, agent_id):
+        agent = self.get_user_by_pk(agent_id)
+        if agent:
+            return agent.properties()
+        else:
+            return []
 
     def update_real_estate(self, real_estate_id, updated_info):
         real_estate = self.get_real_estate_by_id(real_estate_id)
@@ -133,8 +148,11 @@ class RealEstateAgencyManager:
         self._save_real_estates()
 
     def get_agent_calendar(self, agent_id):
-        agent = self.get_user_by_id(agent_id)
-        return agent.get_calendar()
+        agent = self.get_user_by_pk(agent_id)
+        if agent:
+            return agent.get_calendar()
+        else:
+            return []
 
     def update_visit_status(self, visit_id, status):
         visit = self._visits.get(visit_id)
@@ -142,11 +160,11 @@ class RealEstateAgencyManager:
         self._save_visits()
 
     def add_agent(self, owner_id, new_agent_info):
-        new_agent = self._create_user(new_agent_info, owner_id=owner_id)
+        new_agent = self._create_user(new_agent_info, owner_id)
         return new_agent
 
     def remove_agent(self, owner_id, agent_id):
-        owner = self.get_user_by_id(owner_id)
+        owner = self.get_user_by_pk(owner_id)
         if agent_id in owner.agents:
             del owner.agents[agent_id]
             del self._users[agent_id]
@@ -161,6 +179,9 @@ class RealEstateAgencyManager:
             key=lambda agent: agent.get_performance_score(),
             reverse=True
         )
+
+    def get_real_estates(self):
+        return self._real_estates
 
     def _users_to_json(self):
         json_users = {}
@@ -192,7 +213,3 @@ class RealEstateAgencyManager:
         with open(VISITS_PATH, "w") as visits_file:
             json.dump(self._visits_to_json(), visits_file, indent=4)
 
-    def _load_address(self, address_pk):
-        with open(ADDRESSES_PATH, 'r') as address_file:
-            address_data = json.load(address_file)
-        return address_data.get(str(address_pk), None)

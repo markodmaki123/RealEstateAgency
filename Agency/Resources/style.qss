@@ -1,0 +1,23 @@
+QPushButton{
+    background: rgb(240,225,210);
+    }
+
+QHeaderView::section{
+    background: rgb(240,225,210);
+    border: 1px solid rgb(47,55,78)
+    }
+
+QMessageBox{
+    background: rgb(47,55,78);
+    }
+
+QHeaderView,QTableView,QTextEdit,QLineEdit,QAbstractItemView,QComboBox,QScrollBar{
+background: rgb(240,225,210);
+border: 1px solid rgb(47,55,78)
+}
+
+QLabel{
+    font-family: "Franklin Gothic Medium";
+    font-size: 15px;
+    color: rgb(240,225,210)
+    }

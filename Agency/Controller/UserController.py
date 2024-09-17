@@ -10,13 +10,17 @@ class UserController:
 
     def register_user(self, info_dict):
         new_user = User(info_dict)
-        return self.user_service.add_user(new_user)
+        result = self.user_service.add_user(new_user)
+        return result
 
     def login_user(self, email, password):
         return self.user_service.authenticate(email, password)
 
     def search_real_estate(self, search_params):
         return self.user_service.search_properties(search_params)
+
+    def view_real_estate(self, user_pk):
+        return self.user_service.view_real_estates(user_pk)
 
     def schedule_visit(self, user_id, real_estate_id, visit_time):
         visit_info = {
@@ -56,3 +60,15 @@ class UserController:
 
     def view_popular_agents(self):
         return self.user_service.get_popular_agents()
+
+    def get_all_real_estates(self):
+        real_estates = []
+        properties = self.user_service.get_real_estates()
+        for key in properties.keys():
+            self._fill_list_with_data(real_estates, properties, key)
+        return real_estates
+
+    @staticmethod
+    def _fill_list_with_data(real_estates, data, key):
+        row = [str(data[key].pk), data[key].location, data[key].price, data[key].type, data[key].status]
+        real_estates.append(row)

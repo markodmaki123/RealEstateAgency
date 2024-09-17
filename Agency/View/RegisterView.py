@@ -1,21 +1,27 @@
 from PyQt5 import QtWidgets
 from PyQt5.uic import loadUi
-from PyQt5.QtCore import Qt
-from RealEstateAgency.Agency.Application.config import REGISTER_UI_PATH
+from RealEstateAgency.Agency.Application import config
+from RealEstateAgency.Agency.View.MessageBox import messageBox
+
 
 class RegisterView(QtWidgets.QMainWindow):
-    def __init__(self, stackedWidgetP, controller, manager):
+    def __init__(self, widget_stack, controller, manager):
         super(RegisterView, self).__init__()
-        self._widgetStack = stackedWidgetP
+        self._widgetStack = widget_stack
         self._controller = controller
         self._manager = manager
 
-        loadUi(REGISTER_UI_PATH, self)
+        loadUi(config.REGISTER_UI_PATH, self)
+        self.setWindowTitle("Register")
 
-        self.registerBtn.clicked.connect(self.registerBtnPressed)
-        self.cancelBtn.clicked.connect(self.cancelBtnPressed)
+        self.registerBtn.clicked.connect(self.register_btn_pressed)
+        self.cancelBtn.clicked.connect(self.cancel_btn_pressed)
 
-    def registerBtnPressed(self):
+    @property
+    def widget(self):
+        return self._widgetStack
+
+    def register_btn_pressed(self):
         user_info = {
             'pk': None,
             'name': self.nameTxt.text(),
@@ -27,12 +33,16 @@ class RegisterView(QtWidgets.QMainWindow):
             'user_type': 0
         }
 
+        print("Collected user information for registration:")
+        for key, value in user_info.items():
+            print(f"{key}: {value}")
+
         result = self._controller.register_user(user_info)
         if result:
-            QtWidgets.QMessageBox.information(self, "Success", "User Registered Successfully")
+            messageBox("Registration success", "Success")
             self._widgetStack.setCurrentIndex(0)
         else:
-            QtWidgets.QMessageBox.warning(self, "Error", "Failed to Register User")
+            messageBox("Registration failed", "Error")
 
-    def cancelBtnPressed(self):
+    def cancel_btn_pressed(self):
         self._widgetStack.setCurrentIndex(0)

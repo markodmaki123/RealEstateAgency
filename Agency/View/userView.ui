@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UserMainView</class>
+ <widget class="QMainWindow" name="UserMainView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>User - Property Search</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+
+    <item>
+     <widget class="QLabel" name="search_label">
+      <property name="text">
+       <string>Search for Properties</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QLineEdit" name="location_input">
+      <property name="placeholderText">
+       <string>Enter Location</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QSpinBox" name="min_price_input">
+      <property name="prefix">
+       <string>Min Price: </string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QSpinBox" name="max_price_input">
+      <property name="prefix">
+       <string>Max Price: </string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QSpinBox" name="min_area_input">
+      <property name="prefix">
+       <string>Min Area: </string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QSpinBox" name="max_area_input">
+      <property name="prefix">
+       <string>Max Area: </string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QComboBox" name="property_type_input">
+      <item>
+       <string>House</string>
+      </item>
+      <item>
+       <string>Apartment</string>
+      </item>
+      <item>
+       <string>Office</string>
+      </item>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QCheckBox" name="sale_checkbox">
+      <property name="text">
+       <string>For Sale</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QCheckBox" name="rent_checkbox">
+      <property name="text">
+       <string>For Rent</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QPushButton" name="search_button">
+      <property name="text">
+       <string>Search</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QListWidget" name="property_list_widget"/>
+    </item>
+
+    <item>
+     <widget class="QLabel" name="visit_label">
+      <property name="text">
+       <string>Schedule a Visit</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QDateEdit" name="visit_date_input"/>
+    </item>
+
+    <item>
+     <widget class="QTimeEdit" name="visit_time_input"/>
+    </item>
+
+    <item>
+     <widget class="QPushButton" name="schedule_visit_button">
+      <property name="text">
+       <string>Schedule Visit</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QLabel" name="rate_label">
+      <property name="text">
+       <string>Rate Property</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QPushButton" name="like_button">
+      <property name="text">
+       <string>Like</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QPushButton" name="dislike_button">
+      <property name="text">
+       <string>Dislike</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QLabel" name="rate_agent_label">
+      <property name="text">
+       <string>Rate Agent</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QSpinBox" name="agent_rating_input">
+      <property name="prefix">
+       <string>Rating: </string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>5</number>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QTextEdit" name="agent_feedback_input"/>
+    </item>
+
+    <item>
+     <widget class="QPushButton" name="rate_agent_button">
+      <property name="text">
+       <string>Submit Rating</string>
+      </property>
+     </widget>
+    </item>
+
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
